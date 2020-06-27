@@ -9,7 +9,11 @@ for date in dates:
     print(date)
     diffs = []
     for file in glob.glob(path):
-        ticker = (file.split('/')[-1]).split('.')[0]
+        split = (file.split('/')[-1]).split('.')
+        if len(split) == 2:
+            ticker = split[0]
+        else:
+            ticker = split[0] + '.' + split[1]
         oldQuant = 0
         newQuant = 0
         df = pd.read_csv(file)
